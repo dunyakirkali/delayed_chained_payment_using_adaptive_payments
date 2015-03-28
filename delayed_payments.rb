@@ -43,7 +43,7 @@ end
 
 def payment_options(receiver)
   {
-    action_type:    "PAY",
+    action_type:    "PAY_PRIMARY",
     currency_code:  "USD",
     cancel_url:     "https://your-site.com/cancel",
     return_url:     "https://your-site.com/return",
