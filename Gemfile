@@ -4,3 +4,4 @@ ruby '2.1.2'
 
 gem 'paypal-sdk-adaptivepayments'
 gem 'launchy'
+gem 'pry'
