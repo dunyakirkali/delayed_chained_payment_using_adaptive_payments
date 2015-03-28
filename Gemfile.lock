@@ -2,23 +2,50 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.7)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     colorize (0.7.5)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
+    domain_name (0.5.23)
+      unf (>= 0.0.5, < 1.0.0)
+    equalizer (0.0.11)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    ice_nine (0.11.1)
+    json (1.8.2)
     launchy (2.4.3)
       addressable (~> 2.3)
     method_source (0.8.2)
-    multi_json (1.11.0)
-    paypal-sdk-adaptivepayments (1.117.0)
-      paypal-sdk-core (~> 0.3.0)
-    paypal-sdk-core (0.3.1)
-      multi_json (~> 1.0)
-      xml-simple
+    mime-types (2.4.3)
+    netrc (0.10.3)
+    pp-adaptive (1.0.0)
+      json
+      rest-client
+      virtus (~> 1.0.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     slop (3.6.0)
-    xml-simple (1.1.5)
+    thread_safe (0.3.5)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
 
 PLATFORMS
   ruby
@@ -26,5 +53,5 @@ PLATFORMS
 DEPENDENCIES
   colorize
   launchy
-  paypal-sdk-adaptivepayments
+  pp-adaptive
   pry
