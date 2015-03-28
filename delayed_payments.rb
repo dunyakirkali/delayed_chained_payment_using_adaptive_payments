@@ -10,17 +10,14 @@ end
 # Setup the Payment and return pay object
 def setup_payment
   receiver = { email: 'tr-personal@gmail.com' }
-  api.build_pay(payment_options(receiver))
+  api.build_pay payment_options(receiver)
 end
 
 # Redirect the Customer to PayPal for Authorization and return response
 def redirect_to_paypal(pay)
   response = api.pay(pay)
-  if response.success? && response.payment_exec_status != 'ERROR'
-    p 'success'.green
-  else
-    p response.error[0].message.red
-  end
+  (response.success? && response.payment_exec_status != 'ERROR') ?
+    p 'success'.green : p response.error[0].message.red
   response
 end
 
@@ -30,10 +27,35 @@ end
 
 # Make a Payment to One or More Secondary Receivers
 def make_payment_to_secondary(pay_key)
-  # api.build_pay(payment_options(receiver))
+  api.build_pay secondary_payment_options(receiver)
 end
 
 def payment_options(receiver)
+  {
+    actionType: 'PAY_PRIMARY',
+    currencyCode: 'USD',
+    feesPayer: 'EACHRECEIVER',
+    receiverList: {
+      receiver: [
+        {
+          amount:    25.00,
+          email:     receiver[:email],
+          primary:   false
+        },
+        {
+          amount:    30.00,
+          email:     'opotto@gmail.com',
+          primary:   true
+        }
+      ]
+    },
+    returnUrl: 'http://www.yourdomain.com/success.html',
+    cancelUrl: 'http://www.yourdomain.com/cancel.html'
+  }
+end
+
+
+def secondary_payment_options(receiver)
   {
     actionType: 'PAY_PRIMARY',
     currencyCode: 'USD',
