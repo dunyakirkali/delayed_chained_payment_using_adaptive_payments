@@ -1,3 +1,4 @@
+require 'paypal-sdk-adaptivepayments'
 require 'pry'
 require 'launchy'
 
@@ -11,11 +12,18 @@ end
 
 # Set Up the Payment
 def setup_payment
-  PayPal::SDK.load('paypal.yml',  ENV['RACK_ENV'] || 'development')
-  api ||= PayPal::SDK::AdaptivePayments::API.new
-  pay = api.build_pay(payment_options)
+  PayPal::SDK.load('paypal.yml', 'development')
+  api = PayPal::SDK::AdaptivePayments::API.new
+  receiver = {
+    email: 'tr-personal@gmail.com'
+  }
+  pay = api.build_pay(payment_options(receiver))
   response = api.pay(pay)
-  response.success? && response.payment_exec_status != 'ERROR'
+  if response.success? && response.payment_exec_status != 'ERROR'
+    puts 'success'.green
+  else
+    puts 'error'.red
+  end
 end
 
 # Redirect the Customer to PayPal for Authorization
@@ -33,27 +41,26 @@ def make_payment_to_secondary(pay_key)
 
 end
 
-def payment_options
+def payment_options(receiver)
   {
-    actionType: PAY_PRIMARY
-    currencyCode: USD
-    feesPayer: EACHRECEIVER
+    actionType: PAY_PRIMARY,
+    currencyCode: USD,
+    feesPayer: EACHRECEIVER,
     receiverList: {
       receiver: [
         {
           amount:    25.00,
-          email:     'onurkucukkece-buyer@gmail.com',
+          email:     receiver[:email],
           primary:   false
         },
         {
           amount:    25.00 * 0.01,
-          email:     'dunyakirkali-buyer@yahoo.fr',
+          email:     'opotto@gmail.com',
           primary:   true
         }
       ]
-    }
-    requestEnvelope: errorLanguage=en_US
-    returnUrl: 'http://www.yourdomain.com/success.html'
+    },
+    returnUrl: 'http://www.yourdomain.com/success.html',
     cancelUrl: 'http://www.yourdomain.com/cancel.html'
   }
 end

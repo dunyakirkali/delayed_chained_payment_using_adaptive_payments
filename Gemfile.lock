@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.3.7)
     coderay (1.1.0)
+    colorize (0.7.5)
     launchy (2.4.3)
       addressable (~> 2.3)
     method_source (0.8.2)
@@ -23,6 +24,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   launchy
   paypal-sdk-adaptivepayments
   pry
