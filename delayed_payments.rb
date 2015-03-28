@@ -16,8 +16,11 @@ end
 # Redirect the Customer to PayPal for Authorization and return response
 def redirect_to_paypal(pay)
   response = api.pay(pay)
-  (response.success? && response.payment_exec_status != 'ERROR') ?
-    p 'success'.green : p response.error[0].message.red
+  if response.success? && response.payment_exec_status != 'ERROR'
+    p 'success'.green
+  else
+    p response.error[0].message.red
+  end
   response
 end
 
