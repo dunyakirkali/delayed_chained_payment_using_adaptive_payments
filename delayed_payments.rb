@@ -17,9 +17,9 @@ end
 def redirect_to_paypal(pay)
   response = api.pay(pay)
   if response.success? && response.payment_exec_status != 'ERROR'
-    puts 'success'.green
+    p 'success'.green
   else
-    puts response.error[0].message.red
+    p response.error[0].message.red
   end
   response
 end
