@@ -1,7 +1,7 @@
 require 'paypal-sdk-adaptivepayments'
 require 'pry'
 require 'launchy'
-
+require 'colorize'
 def run
   pry.binding
   setup_payment
@@ -43,9 +43,9 @@ end
 
 def payment_options(receiver)
   {
-    actionType: PAY_PRIMARY,
-    currencyCode: USD,
-    feesPayer: EACHRECEIVER,
+    actionType: 'PAY_PRIMARY',
+    currencyCode: 'USD',
+    feesPayer: 'EACHRECEIVER',
     receiverList: {
       receiver: [
         {
