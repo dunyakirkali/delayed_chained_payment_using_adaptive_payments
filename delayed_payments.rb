@@ -18,7 +18,7 @@ def redirect_to_paypal(pay)
   if response.success? && response.payment_exec_status != 'ERROR'
     puts 'success'.green
   else
-    puts 'error'.red
+    puts response.error[0].message.red
   end
 end
 
