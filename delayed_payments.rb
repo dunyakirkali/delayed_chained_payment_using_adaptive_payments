@@ -2,6 +2,7 @@ require 'paypal-sdk-adaptivepayments'
 require 'pry'
 require 'launchy'
 require 'colorize'
+
 def run
   pry.binding
 end
@@ -20,6 +21,7 @@ def redirect_to_paypal(pay)
   else
     puts response.error[0].message.red
   end
+  response
 end
 
 # Retrieve Data about the Payment (Optional)
