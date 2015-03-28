@@ -1,16 +1,28 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.7)
+    coderay (1.1.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    method_source (0.8.2)
     multi_json (1.11.0)
     paypal-sdk-adaptivepayments (1.117.0)
       paypal-sdk-core (~> 0.3.0)
     paypal-sdk-core (0.3.1)
       multi_json (~> 1.0)
       xml-simple
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    slop (3.6.0)
     xml-simple (1.1.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  launchy
   paypal-sdk-adaptivepayments
+  pry
