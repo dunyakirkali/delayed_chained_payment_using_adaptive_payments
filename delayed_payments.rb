@@ -46,7 +46,7 @@ def payment_options(receiver)
           primary:   false
         },
         {
-          amount:    25.00 * 0.01,
+          amount:    30.00,
           email:     'opotto@gmail.com',
           primary:   true
         }
