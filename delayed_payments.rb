@@ -4,20 +4,16 @@ require 'launchy'
 require 'colorize'
 def run
   pry.binding
-  setup_payment
-  redirect_to_paypal
-  retrieve_payment_data
-  make_payment_to_secondary
 end
 
-# Set Up the Payment
+# Setup the Payment and return pay object
 def setup_payment
-  PayPal::SDK.load('paypal.yml', 'development')
-  api = PayPal::SDK::AdaptivePayments::API.new
-  receiver = {
-    email: 'tr-personal@gmail.com'
-  }
-  pay = api.build_pay(payment_options(receiver))
+  receiver = { email: 'tr-personal@gmail.com' }
+  api.build_pay(payment_options(receiver))
+end
+
+# Redirect the Customer to PayPal for Authorization and return response
+def redirect_to_paypal(pay)
   response = api.pay(pay)
   if response.success? && response.payment_exec_status != 'ERROR'
     puts 'success'.green
@@ -26,19 +22,13 @@ def setup_payment
   end
 end
 
-# Redirect the Customer to PayPal for Authorization
-def redirect_to_paypal(url)
-  Launchy.open(url)
-end
-
 # Retrieve Data about the Payment (Optional)
 def retrieve_payment_data
-
 end
 
 # Make a Payment to One or More Secondary Receivers
 def make_payment_to_secondary(pay_key)
-
+  # api.build_pay(payment_options(receiver))
 end
 
 def payment_options(receiver)
@@ -63,6 +53,11 @@ def payment_options(receiver)
     returnUrl: 'http://www.yourdomain.com/success.html',
     cancelUrl: 'http://www.yourdomain.com/cancel.html'
   }
+end
+
+def api
+  PayPal::SDK.load('paypal.yml', 'development')
+  PayPal::SDK::AdaptivePayments::API.new
 end
 
 run
