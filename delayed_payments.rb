@@ -20,6 +20,7 @@ def redirect_to_paypal(pay)
   else
     puts 'error'.red
   end
+  response
 end
 
 # Retrieve Data about the Payment (Optional)
