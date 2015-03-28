@@ -1,3 +1,10 @@
+def run
+  setup_payment
+  redirect_to_paypal
+  retrieve_payment_data
+  make_payment_to_secondary
+end
+
 # Set Up the Payment
 def setup_payment
 
