@@ -28,6 +28,7 @@ end
 def retrieve_payment_data(pay_key)
   api.execute(:PaymentDetails, pay_key: pay_key) do |response|
     if response.success?
+      @paykey = response.pay_key
       p "Payment status: #{response.payment_exec_status}".green
     else
       p "#{response.ack_code}: #{response.error_message}".red
@@ -37,8 +38,8 @@ def retrieve_payment_data(pay_key)
 end
 
 # Make a Payment to One or More Secondary Receivers
-def make_payment_to_secondary(pay_key)
-  api.pay pay_key
+def make_payment_to_secondary(payment)
+  api.execute :ExecutePayment, secondary_payment_option(payment)
 end
 
 def payment_options(receiver)
@@ -48,9 +49,16 @@ def payment_options(receiver)
     cancel_url:     "https://your-site.com/cancel",
     return_url:     "https://your-site.com/return",
     receivers:      [
-      { email: "opotto@gmail.com", amount: 100, primary: true },
-      { email: receiver[:email], amount: 90 }
+      { email: "opotto@gmail.com", amount: 1000, primary: true },
+      { email: receiver[:email], amount: 900 }
     ]
+  }
+end
+
+def secondary_payment_option(payment)
+  {
+    action_type: 'PAY',
+    pay_key: payment.pay_key
   }
 end
 
