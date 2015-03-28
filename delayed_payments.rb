@@ -25,7 +25,7 @@ def retrieve_payment_data
 end
 
 # Make a Payment to One or More Secondary Receivers
-def make_payment_to_secondary
+def make_payment_to_secondary(pay_key)
 
 end
 
