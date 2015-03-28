@@ -1,10 +1,9 @@
 test: &default
   mode: sandbox
   app_id: APP-80W284485P519543T
-  username: dunyakirkali-facilitator_api1.yahoo.fr
-  password: NPJ8HJMN2CAM6X9U
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31Aq1QWZMoe6vvnqweG1V.IvppzffQ
-  sandbox_email_address: dunyakirkali-facilitator@yahoo.fr
+  username: opotto_api1.gmail.com
+  password: 5X4XVKF7XUV3TG9J
+  signature: AH6d1xBXrGOpE-RZEFdL.zYTFUW0ANeJL59zIFyiDm3ijpwFopvxNwW9
 
 development:
   <<: *default
